@@ -1,0 +1,47 @@
+Zbk	Presidentea	JaiotzaEstatua	JaiotzaUrtea	AlderdiPolitikoa	KarguHartzea	KarguUztea
+1	George Washington	Virginia	1732	Independentea	1789-04-30	1797-03-04
+2	John Adams	Massachusetts	1735	Federalista	1797-03-04	1801-03-04
+3	Thomas Jefferson	Virginia	1743	Demokrata-Errepublikarra	1801-03-04	1809-03-04
+4	James Madison	Virginia	1751	Demokrata-Errepublikarra	1809-03-04	1817-03-04
+5	James Monroe	Virginia	1758	Demokrata-Errepublikarra	1817-03-04	1825-03-04
+6	John Quincy Adams	Massachusetts	1767	Demokrata-Errepublikarra	1825-03-04	1829-03-04
+7	Andrew Jackson	Ipar Carolina	1767	Demokrata	1829-03-04	1837-03-04
+8	Martin Van Buren	New York	1782	Demokrata	1837-03-04	1841-03-04
+9	William Henry Harrison	Virginia	1773	Whig	1841-03-04	1841-04-04
+10	John Tyler	Virginia	1790	Whig	1841-04-04	1845-03-04
+11	James K. Polk	Ipar Carolina	1795	Demokrata	1845-03-04	1849-03-04
+12	Zachary Taylor	Virginia	1784	Whig	1849-03-04	1850-07-09
+13	Millard Fillmore	New York	1800	Whig	1850-07-09	1853-03-04
+14	Franklin Pierce	New Hampshire	1804	Demokrata	1853-03-04	1857-03-04
+15	James Buchanan	Pensilvania	1791	Demokrata	1857-03-04	1861-03-04
+16	Abraham Lincoln	Kentucky	1809	Errepublikarra	1861-03-04	1865-04-15
+17	Andrew Johnson	Ipar Carolina	1808	Demokrata	1865-04-15	1869-03-04
+18	Ulysses S. Grant	Ohio	1822	Errepublikarra	1869-03-04	1877-03-04
+19	Rutherford B. Hayes	Ohio	1822	Errepublikarra	1877-03-04	1881-03-04
+20	James A. Garfield	Ohio	1831	Errepublikarra	1881-03-04	1881-09-19
+21	Chester A. Arthur	Vermont	1829	Errepublikarra	1881-09-19	1885-03-04
+22	Grover Cleveland	New Jersey	1837	Demokrata	1885-03-04	1889-03-04
+23	Benjamin Harrison	Ohio	1833	Errepublikarra	1889-03-04	1893-03-04
+24	Grover Cleveland	New Jersey	1837	Demokrata	1893-03-04	1897-03-04
+25	William McKinley	Ohio	1843	Errepublikarra	1897-03-04	1901-09-14
+26	Theodore Roosevelt	New York	1858	Errepublikarra	1901-09-14	1909-03-04
+27	William Howard Taft	Ohio	1857	Errepublikarra	1909-03-04	1913-03-04
+28	Woodrow Wilson	Virginia	1856	Demokrata	1913-03-04	1921-03-04
+29	Warren G. Harding	Ohio	1865	Errepublikarra	1921-03-04	1923-08-02
+30	Calvin Coolidge	Vermont	1872	Errepublikarra	1923-08-02	1929-03-04
+31	Herbert Hoover	Iowa	1874	Errepublikarra	1929-03-04	1933-03-04
+32	Franklin D. Roosevelt	New York	1882	Demokrata	1933-03-04	1945-04-12
+33	Harry S. Truman	Misuri	1884	Demokrata	1945-04-12	1953-01-20
+34	Dwight D. Eisenhower	Texas	1890	Errepublikarra	1953-01-20	1961-01-20
+35	John F. Kennedy	Massachusetts	1917	Demokrata	1961-01-20	1963-11-22
+36	Lyndon B. Johnson	Texas	1908	Demokrata	1963-11-22	1969-01-20
+37	Richard Nixon	California	1913	Errepublikarra	1969-01-20	1974-08-09
+38	Gerald Ford	Nebraska	1913	Errepublikarra	1974-08-09	1977-01-20
+39	Jimmy Carter	Georgia	1924	Demokrata	1977-01-20	1981-01-20
+40	Ronald Reagan	Illinois	1911	Errepublikarra	1981-01-20	1989-01-20
+41	George H. W. Bush	Massachusetts	1924	Errepublikarra	1989-01-20	1993-01-20
+42	Bill Clinton	Arkansas	1946	Demokrata	1993-01-20	2001-01-20
+43	George W. Bush	Connecticut	1946	Errepublikarra	2001-01-20	2009-01-20
+44	Barack Obama	Hawái	1961	Demokrata	2009-01-20	2017-01-20
+45	Donald Trump	New York	1946	Errepublikarra	2017-01-20	2021-01-20
+46	Joe Biden	Pensilvania	1942	Demokrata	2021-01-20	Karguan dago

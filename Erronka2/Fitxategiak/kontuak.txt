@@ -1,0 +1,5 @@
+gaizka:g1234
+mikel:mikel1234
+ander:ander1234
+admin:admin1234
+paolo:p1234

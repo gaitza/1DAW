@@ -1,0 +1,5 @@
+Desordenatutako array-a:
+9 5 87 65 80 7 19 72 1987 27 
+
+Ordenatutako array-a:
+5 7 9 19 27 65 72 80 87 1987 
