@@ -12,7 +12,6 @@ import klaseak.Erabiltzaile;
 import klaseak.XMLSortu;
 
 import java.io.*;
-import java.util.*;
 
 public class Main {
 
@@ -51,7 +50,7 @@ public class Main {
 						alta();
 						break;
 					case 2:
-						XMLSortu.generarXML("erabiltzaile.xml");
+						XMLSortu.sortuXML("langile.xml");
 						break;
 					case 3:
 						datuBaseaEguneratu();
@@ -78,6 +77,7 @@ public class Main {
 	}
 
 	// Metodo Erabiltzaile Berria
+	@SuppressWarnings("resource")
 	public static void alta() {
 		Scanner sc = new Scanner(System.in);
 
@@ -102,6 +102,7 @@ public class Main {
 		} else {
 			System.out.println("Errorea Erabiltzailea Sortzean.");
 		}
+		sc.close();
 	}
 
 	public static void datuBaseaEguneratu() {

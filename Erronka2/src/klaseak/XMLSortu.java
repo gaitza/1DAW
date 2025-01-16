@@ -1,138 +1,77 @@
 package klaseak;
 
-import java.io.File;
-import java.util.Map;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
+import org.w3c.dom.*;
+import javax.xml.parsers.*;
+import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
+import java.io.File;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 public class XMLSortu {
 
-    public static void generarXML(String archivo) {
+    public static void sortuXML(String fitxategia) {
         try {
-            // Kargatu erabiltzaileak datu-basetik
-            Map<String, String> erabiltzaileak = BDErabiltzaile.erabiltzaileakKargatu();
+            // Obtener langiles desde el CSV usando BDLangile
+            List<Langile> langiles = BDLangile.getLangilesFromCSV();
 
-            // Sortu DocumentBuilder instantzia berri bat XML sortzeko
+            // Crear el documento XML
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.newDocument();  // Sortu XML berri bat
+            Document doc = builder.newDocument();
 
-            // Sortu erro-elementua <Erabiltzaileak>
-            Element root = doc.createElement("Erabiltzaileak");
+            // Nodo raíz
+            Element root = doc.createElement("Langileak");
             doc.appendChild(root);
 
-            // Itera ezazu erabiltzaileen gainean eta gehitu XMLra
-            for (Map.Entry<String, String> entry : erabiltzaileak.entrySet()) {
-                // Sortu <Erabiltzaile> elementu bat erabiltzaile bakoitzarentzat
-                Element izenaElement = doc.createElement("Erabiltzaile");
+            // Agregar langiles al XML
+            for (Langile langile : langiles) {
+                Element langileElement = doc.createElement("Langile");
 
-                // Sortu <Izena> azpielementua
+                Element id = doc.createElement("ID");
+                id.appendChild(doc.createTextNode(String.valueOf(langile.getId())));
+                langileElement.appendChild(id);
+
                 Element izena = doc.createElement("Izena");
-                izena.appendChild(doc.createTextNode(entry.getKey()));  // Gehitu erabiltzaile-izena
-                izenaElement.appendChild(izena);
+                izena.appendChild(doc.createTextNode(langile.getIzena()));
+                langileElement.appendChild(izena);
 
-                // Sortu azpielementua <Pasahitza>
-                Element pasahitza = doc.createElement("Pasahitza");
-                pasahitza.appendChild(doc.createTextNode(entry.getValue()));  // Gehitu pasahitza
-                izenaElement.appendChild(pasahitza);
+                Element abizenak = doc.createElement("Abizenak");
+                abizenak.appendChild(doc.createTextNode(langile.getAbizenak()));
+                langileElement.appendChild(abizenak);
 
-                // Gehitu erabiltzailea erro elementura
-                root.appendChild(izenaElement);
+                Element emaila = doc.createElement("Emaila");
+                emaila.appendChild(doc.createTextNode(langile.getEmaila()));
+                langileElement.appendChild(emaila);
+
+                Element telefonoa = doc.createElement("Telefonoa");
+                telefonoa.appendChild(doc.createTextNode(langile.getTelefonoa()));
+                langileElement.appendChild(telefonoa);
+
+                Element kontratazioData = doc.createElement("KontratazioData");
+                String formattedDate = langile.getKontratazioData().format(DateTimeFormatter.ISO_LOCAL_DATE);
+                kontratazioData.appendChild(doc.createTextNode(formattedDate));
+                langileElement.appendChild(kontratazioData);
+
+                Element idNagusia = doc.createElement("IDNagusia");
+                idNagusia.appendChild(doc.createTextNode(String.valueOf(langile.getIdNagusia())));
+                langileElement.appendChild(idNagusia);
+
+                root.appendChild(langileElement);
             }
 
-            // Gorde XML dokumentua fitxategi batean
+            // Guardar el documento XML
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
-            DOMSource source = new DOMSource(doc);  // XML-rako datu-iturria
-            StreamResult result = new StreamResult(new File(archivo));  // Fitxategian emaitza
-            transformer.transform(source, result);  // Idatzi XML fitxategia
+            DOMSource source = new DOMSource(doc);
+            StreamResult result = new StreamResult(new File(fitxategia));
+            transformer.transform(source, result);
 
-            System.out.println("XML sortuta.");
+            System.out.println("XML sortua: " + fitxategia);
+
         } catch (Exception e) {
-            System.out.println("Errorea XML sortzerakoan: " + e.getMessage());
+            System.out.println("Errorea XML sortzean: " + e.getMessage());
         }
-        
-        
-        /*Langile Bersioa
-         * public static void generarXML(String archivo) {
-	        try {
-	            // Kargatu langileak datu-basetik edo iturri batetik
-	            Map<Integer, Langile> langileak = BDLangile.langileakKargatu(); // Kargatu langileen datuak zure datu-basetik
-
-	            // Sortu DocumentBuilder instantzia berri bat XML sortzeko
-	            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-	            DocumentBuilder builder = factory.newDocumentBuilder();
-	            Document doc = builder.newDocument();  // Sortu XML dokumentu berri bat
-
-	            // Sortu erro-elementua <Langileak>
-	            Element root = doc.createElement("Langileak");
-	            doc.appendChild(root);
-
-	            // Itera ezazu langileak eta gehitu XMLra
-	            for (Langile langile : langileak.values()) {
-	                // Sortu <Langile> elementu bat langile bakoitzarentzat
-	                Element langileElement = doc.createElement("Langile");
-
-	                // Sortu langilearen azpi-elementuak
-	                Element langileMota = doc.createElement("LangileMota");
-	                langileMota.appendChild(doc.createTextNode(langile.getLangileMota()));  // Langile Mota
-	                langileElement.appendChild(langileMota);
-
-	                Element id = doc.createElement("ID");
-	                id.appendChild(doc.createTextNode(String.valueOf(langile.getId())));  // Langilearen IDa
-	                langileElement.appendChild(id);
-
-	                Element izenaAbizenak = doc.createElement("IzenaAbizenak");
-	                izenaAbizenak.appendChild(doc.createTextNode(langile.getIzenaAbizenak()));  // Izen osoa
-	                langileElement.appendChild(izenaAbizenak);
-
-	                Element email = doc.createElement("Email");
-	                email.appendChild(doc.createTextNode(langile.getEmail()));  // Posta elektronikoa
-	                langileElement.appendChild(email);
-
-	                Element telefonoa = doc.createElement("Telefonoa");
-	                telefono.appendChild(doc.createTextNode(langile.getTelefonoa()));  // Telefonoa
-	                langileElement.appendChild(telefonoa);
-
-	                Element data = doc.createElement("Data");
-	                data.appendChild(doc.createTextNode(langile.getData()));  // Data
-	                langileElement.appendChild(data);
-
-	                // Langile motari buruzko informazio espezifikoa
-	                if ("Administrativo".equals(langile.getLangileMota())) {
-	                    Element lanPostua = doc.createElement("LanPostua");
-	                    lanPostua.appendChild(doc.createTextNode(langile.getLanPostua()));  // Postua
-	                    langileElement.appendChild(lanPostua);
-	                }
-
-	                Element erabiltzaileEgiaztagiria = doc.createElement("ErabiltzaileEgiaztagiria");
-	                erabiltzaileEgiaztagiria.appendChild(doc.createTextNode(langile.getErabiltzaileEgiaztagiria()));  // Erabiltzaileen egiaztapena
-	                langileElement.appendChild(erabiltzaileEgiaztagiria);
-
-	                // Gehitu langilea erro-elementuari
-	                root.appendChild(langileElement);
-	            }
-
-	            // Gorde XML dokumentua fitxategi batean
-	            TransformerFactory transformerFactory = TransformerFactory.newInstance();
-	            Transformer transformer = transformerFactory.newTransformer();
-	            DOMSource source = new DOMSource(doc);  // XML-rako datu-iturria
-	            StreamResult result = new StreamResult(new File(archivo));  // Fitxategian emaitza
-	            transformer.transform(source, result);  // Idatzi XML fitxategia
-
-	            System.out.println("XML behar bezala sortu da.");
-	        } catch (Exception e) {
-	            System.out.println("Errore bat gertatu da XML sortzean: " + e.getMessage());
-	        }
-	    }
-	    */
-         
     }
 }
-
