@@ -23,7 +23,7 @@ public class Main {
 
 		// Autentifikazioa
 		if (!autentifikatu(kontuak, sc)) {
-			System.out.println("Hiru saiakera oker. Saioa amaitu da.");
+			System.out.println("Lau saiakera oker. Saioa amaitu da.");
 			sc.close();
 			return;
 		}
@@ -66,13 +66,13 @@ public class Main {
 					}
 				} else {
 					System.out.println("Hori ez da zenbaki bat. Saiatu berriz.");
-					sc.next(); // Karaktere baliogabea garbitu
+					sc.next(); 
 				}
 			} while (resp != 5);
 		} catch (Exception e) {
 			System.out.println("Errore bat gertatu da: " + e.getMessage());
 		} finally {
-			sc.close(); // Baliabidea garbitu
+			sc.close(); 
 		}
 	}
 
@@ -87,7 +87,7 @@ public class Main {
 		System.out.print("Sartu Pasahitza: ");
 		String pasahitza = sc.next();
 
-		// Verificar que la contraseña se repita correctamente
+		// Egiaztatu pasahitza behar bezala errepikatzen dela
 		System.out.print("Errepikatu pasahitza: ");
 		String berretsitakoPasahitza = sc.next();
 
@@ -134,7 +134,7 @@ public class Main {
 
 	// Autentifikazio metodoa
 	public static boolean autentifikatu(Map<String, String> kontuak, Scanner sc) {
-		int saiakerak = 3;
+		int saiakerak = 4;
 		while (saiakerak > 0) {
 			System.out.print("Sartu erabiltzaile izena: ");
 			String erabiltzailea = sc.next();

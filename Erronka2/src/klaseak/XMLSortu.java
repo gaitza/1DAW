@@ -13,19 +13,19 @@ public class XMLSortu {
 
     public static void sortuXML(String fitxategia) {
         try {
-            // Obtener langiles desde el CSV usando BDLangile
+            // Lortu langileak CSVtik BDLangile erabiliz
             List<Langile> langiles = BDLangile.getLangilesFromCSV();
 
-            // Crear el documento XML
+            // Sortu XML dokumentua
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document doc = builder.newDocument();
 
-            // Nodo raíz
+            // Erro-nodoa
             Element root = doc.createElement("Langileak");
             doc.appendChild(root);
 
-            // Agregar langiles al XML
+            // Gehitu langileak XMLra
             for (Langile langile : langiles) {
                 Element langileElement = doc.createElement("Langile");
 
@@ -59,9 +59,10 @@ public class XMLSortu {
                 langileElement.appendChild(idNagusia);
 
                 root.appendChild(langileElement);
+                
             }
 
-            // Guardar el documento XML
+            // Gorde XML dokumentua
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(doc);

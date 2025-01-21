@@ -10,42 +10,58 @@ import java.util.List;
 
 public class BDLangile {
 
-    private static final String CSV_PATH = "Fitxategiak/langile.csv"; // Ruta del archivo CSV
-    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yy"); // Formato esperado
+	private static final String CSV_PATH = "Fitxategiak/langile.csv"; // CSV fitxategiaren bidea
+	private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yy"); // Espero den
+																										// data-formatua
+	static List<Langile> langiles = new ArrayList<>();
 
-    public static List<Langile> getLangilesFromCSV() {
-        List<Langile> langiles = new ArrayList<>();
-        String line;
+	public static List<Langile> getLangilesFromCSV() {
 
-        try (BufferedReader br = new BufferedReader(new FileReader(CSV_PATH))) {
-            // Leer la cabecera (si existe) y continuar con los datos
-            br.readLine(); // Supongamos que la primera línea es la cabecera
+		String line;
 
-            while ((line = br.readLine()) != null) {
-                String[] values = line.split(","); // Separar los valores por coma
+		try (BufferedReader br = new BufferedReader(new FileReader(CSV_PATH))) {
+			// Irakurri goiburua (baldin badago) eta jarraitu datuekin
+			br.readLine(); // Demagun lehen lerroa goiburua dela
 
-                // Asegurarnos de que el archivo tiene el formato correcto
-                if (values.length == 7) {
-                    int id = Integer.parseInt(values[0].trim());
-                    String izena = values[1].trim();
-                    String abizenak = values[2].trim();
-                    String emaila = values[3].trim();
-                    String telefonoa = values[4].trim();
-                    // Usar el formato para parsear la fecha
-                    LocalDate kontratazioData = LocalDate.parse(values[5].trim(), DATE_FORMATTER);
-                    int idNagusia = Integer.parseInt(values[6].trim());
+			while ((line = br.readLine()) != null) {
+				String[] values = line.split(","); // Banatu balioak komaz
 
-                    // Crear un objeto Langile y añadirlo a la lista
-                    langiles.add(new Langile(id, izena, abizenak, emaila, telefonoa, kontratazioData, idNagusia));
-                }
-            }
-        } catch (IOException e) {
-            System.out.println("Errorea CSV fitxategia irakurtzean: " + e.getMessage());
-        } catch (Exception e) {
-            System.out.println("Errorea datuak prozesatzean: " + e.getMessage());
-        }
+				// Ziurtatu fitxategia formatu egokian dagoela
+				if (values.length == 7) {
+					int id = Integer.parseInt(values[0].trim());
+					String izena = values[1].trim();
+					String abizenak = values[2].trim();
+					String emaila = values[3].trim();
+					String telefonoa = values[4].trim();
+					// Erabili formatua data analizatzeko
+					LocalDate kontratazioData = LocalDate.parse(values[5].trim(), DATE_FORMATTER);
+					int idNagusia = Integer.parseInt(values[6].trim());
 
-        return langiles;
-    }
+					// Sortu Langile objektu bat eta gehitu zerrendara
+					langiles.add(new Langile(id, izena, abizenak, emaila, telefonoa, kontratazioData, idNagusia));
+				}
+			}
+		} catch (IOException e) {
+			System.out.println("Errorea CSV fitxategia irakurtzean: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Errorea datuak prozesatzean: " + e.getMessage());
+		}
+		return langiles;
+
+	}
+
+	// Langile objektu berriak gehitzeko metodoa
+	public void addLangile(Langile langile) {
+		langiles.add(langile);
+	}
+
+	// Langile guztien informazioa formatu egokian bistaratzen duen metodoa
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		for (Langile langile : langiles) {
+			sb.append(langile.toString()).append("\n");
+		}
+		return sb.toString();
+	}
 }
-

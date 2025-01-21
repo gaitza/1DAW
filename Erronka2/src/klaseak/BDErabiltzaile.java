@@ -11,7 +11,7 @@ import java.util.Map;
 public class BDErabiltzaile {
 	private static final String archivo = "Fitxategiak/kontuak.txt";
 
-	// Cargar usuarios del archivo
+	// Kargatu erabiltzaileak fitxategitik
 	public static Map<String, String> erabiltzaileakKargatu() {
 		Map<String, String> usuarios = new HashMap<>();
 		try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
@@ -28,7 +28,7 @@ public class BDErabiltzaile {
 		return usuarios;
 	}
 
-	// Guardar un nuevo usuario
+	// Gorde erabiltzaile berri bat
 	public static boolean erabiltzaileGorde(Erabiltzaile erabiltzaile) {
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo, true))) {
 			// Idatzi erabiltzaile berria fitxategian, formatua "izena:pasahitza"
@@ -41,7 +41,7 @@ public class BDErabiltzaile {
 		}
 	}
 
-	// Verificar si el usuario existe con la contraseña correcta
+	// Egiaztatu erabiltzailea pasahitz zuzena duen ala ez
 	public static boolean erabiltzaileaAutentifikatu(String izena, String pasahitza) {
 		Map<String, String> erabiltzaileak = erabiltzaileakKargatu();
 		return erabiltzaileak.containsKey(izena) && erabiltzaileak.get(izena).equals(pasahitza);
