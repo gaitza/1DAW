@@ -102,11 +102,55 @@ public class Main {
 		} else {
 			System.out.println("Errorea Erabiltzailea Sortzean.");
 		}
-		sc.close();
 	}
 
 	public static void datuBaseaEguneratu() {
-		System.out.println("Datu-basea eguneratzen...");
+		Scanner sc = new Scanner(System.in);
+		int resp2 = 0;
+
+		try {
+			do {
+				// Menua inprimatu
+				System.out.println("\n1. Eremua gehitu.");
+				System.out.println("2. Taula eguneratu.");
+				System.out.println("3. Atzera joan.");
+				System.out.print("ELIJA UNA OPCIÓN (1-3): ");
+
+				// Sarrera irakurri eta zenbaki bihurtu
+				if (sc.hasNextInt()) {
+					resp2 = sc.nextInt();
+
+					// Aukeraren arabera erantzuna
+					switch (resp2) {
+					case 1:
+						eremuaGehitu();
+						break;
+					case 2:
+						taulaEguneratu();;
+						break;
+					case 3:
+						return;
+					default:
+						System.out.println("Sartu behar duzu 1- arteko aukera bat.");
+					}
+				} else {
+					System.out.println("Hori ez da zenbaki bat. Saiatu berriz.");
+					sc.next(); 
+				}
+			} while (resp2 != 3);
+		} catch (Exception e) {
+			System.out.println("Errore bat gertatu da: " + e.getMessage());
+		} 
+	}
+
+	public static void taulaEguneratu() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static void eremuaGehitu() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	public static void datuakErakutsi() {
