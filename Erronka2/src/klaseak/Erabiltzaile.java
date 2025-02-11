@@ -1,27 +1,26 @@
 package klaseak;
 
-public class Erabiltzaile {
-	private String izena;
-	private String pasahitza;
+public class Erabiltzaile extends Pertsona {
+    private String pasahitza;
 
-	// Konstruktorea
-	public Erabiltzaile(String izena, String pasahitza) {
-		this.izena = izena;
-		this.pasahitza = pasahitza;
-	}
+    // Constructor
+    public Erabiltzaile(String izena, String abizenak, String pasahitza) {
+        super(izena, abizenak);  
+        this.pasahitza = pasahitza;
+    }
 
-	// Getters & Setters
-	public String getIzena() {
-		return izena;
-	}
+    // Getter & Setter
+    public String getPasahitza() {
+        return pasahitza;
+    }
 
-	public String getPasahiza() {
-		return pasahitza;
-	}
+    public void setPasahitza(String pasahitza) {
+        this.pasahitza = pasahitza;
+    }
 
-	@Override
-	public String toString() {
-		return izena + ":" + pasahitza;
-	}
-
+    // Modificación del método toString
+    @Override
+    public String toString() {
+        return getIzena() + ":" + pasahitza;  
+    }
 }

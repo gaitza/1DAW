@@ -11,68 +11,68 @@ import java.util.List;
 
 public class XMLSortu {
 
-    public static void sortuXML(String fitxategia) {
-        try {
-            // Lortu langileak CSVtik BDLangile erabiliz
-            List<Langile> langiles = BDLangile.getLangilesFromCSV();
+	public static void sortuXML(String fitxategia) {
+		try {
+			// Lortu langileak CSVtik BDLangile erabiliz
+			List<Langile> langiles = BDLangile.getLangilesFromCSV();
 
-            // Sortu XML dokumentua
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.newDocument();
+			// Sortu XML dokumentua
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder builder = factory.newDocumentBuilder();
+			Document doc = builder.newDocument();
 
-            // Erro-nodoa
-            Element root = doc.createElement("Langileak");
-            doc.appendChild(root);
+			// Erro-nodoa
+			Element root = doc.createElement("Langileak");
+			doc.appendChild(root);
 
-            // Gehitu langileak XMLra
-            for (Langile langile : langiles) {
-                Element langileElement = doc.createElement("Langile");
+			// Gehitu langileak XMLra
+			for (Langile langile : langiles) {
+				Element langileElement = doc.createElement("Langile");
 
-                Element id = doc.createElement("ID");
-                id.appendChild(doc.createTextNode(String.valueOf(langile.getId())));
-                langileElement.appendChild(id);
+				Element id = doc.createElement("ID");
+				id.appendChild(doc.createTextNode(String.valueOf(langile.getId())));
+				langileElement.appendChild(id);
 
-                Element izena = doc.createElement("Izena");
-                izena.appendChild(doc.createTextNode(langile.getIzena()));
-                langileElement.appendChild(izena);
+				Element izena = doc.createElement("Izena");
+				izena.appendChild(doc.createTextNode(langile.getIzena()));
+				langileElement.appendChild(izena);
 
-                Element abizenak = doc.createElement("Abizenak");
-                abizenak.appendChild(doc.createTextNode(langile.getAbizenak()));
-                langileElement.appendChild(abizenak);
+				Element abizenak = doc.createElement("Abizenak");
+				abizenak.appendChild(doc.createTextNode(langile.getAbizenak()));
+				langileElement.appendChild(abizenak);
 
-                Element emaila = doc.createElement("Emaila");
-                emaila.appendChild(doc.createTextNode(langile.getEmaila()));
-                langileElement.appendChild(emaila);
+				Element emaila = doc.createElement("Emaila");
+				emaila.appendChild(doc.createTextNode(langile.getEmaila()));
+				langileElement.appendChild(emaila);
 
-                Element telefonoa = doc.createElement("Telefonoa");
-                telefonoa.appendChild(doc.createTextNode(langile.getTelefonoa()));
-                langileElement.appendChild(telefonoa);
+				Element telefonoa = doc.createElement("Telefonoa");
+				telefonoa.appendChild(doc.createTextNode(langile.getTelefonoa()));
+				langileElement.appendChild(telefonoa);
 
-                Element kontratazioData = doc.createElement("KontratazioData");
-                String formattedDate = langile.getKontratazioData().format(DateTimeFormatter.ISO_LOCAL_DATE);
-                kontratazioData.appendChild(doc.createTextNode(formattedDate));
-                langileElement.appendChild(kontratazioData);
+				Element kontratazioData = doc.createElement("KontratazioData");
+				String formattedDate = langile.getKontratazioData().format(DateTimeFormatter.ISO_LOCAL_DATE);
+				kontratazioData.appendChild(doc.createTextNode(formattedDate));
+				langileElement.appendChild(kontratazioData);
 
-                Element idNagusia = doc.createElement("IDNagusia");
-                idNagusia.appendChild(doc.createTextNode(String.valueOf(langile.getIdNagusia())));
-                langileElement.appendChild(idNagusia);
+				Element idNagusia = doc.createElement("IDNagusia");
+				idNagusia.appendChild(doc.createTextNode(String.valueOf(langile.getIdNagusia())));
+				langileElement.appendChild(idNagusia);
 
-                root.appendChild(langileElement);
-                
-            }
+				root.appendChild(langileElement);
 
-            // Gorde XML dokumentua
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            Transformer transformer = transformerFactory.newTransformer();
-            DOMSource source = new DOMSource(doc);
-            StreamResult result = new StreamResult(new File(fitxategia));
-            transformer.transform(source, result);
+			}
 
-            System.out.println("XML sortua: " + fitxategia);
+			// Gorde XML dokumentua
+			TransformerFactory transformerFactory = TransformerFactory.newInstance();
+			Transformer transformer = transformerFactory.newTransformer();
+			DOMSource source = new DOMSource(doc);
+			StreamResult result = new StreamResult(new File(fitxategia));
+			transformer.transform(source, result);
 
-        } catch (Exception e) {
-            System.out.println("Errorea XML sortzean: " + e.getMessage());
-        }
-    }
+			System.out.println("XML sortua: " + fitxategia);
+
+		} catch (Exception e) {
+			System.out.println("Errorea XML sortzean: " + e.getMessage());
+		}
+	}
 }

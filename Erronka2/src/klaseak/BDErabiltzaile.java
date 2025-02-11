@@ -31,7 +31,7 @@ public class BDErabiltzaile {
 	// Gorde erabiltzaile berri bat
 	public static boolean erabiltzaileGorde(Erabiltzaile erabiltzaile) {
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo, true))) {
-			// Idatzi erabiltzaile berria fitxategian, formatua "izena:pasahitza"
+			// Idatzi erabiltzaile berria fitxategian
 			bw.write(erabiltzaile.toString());
 			bw.newLine(); // Erabiltzaile bakoitzaren ondoren lerro berri bat gehitu
 			return true;
