@@ -123,29 +123,29 @@ public class Main {
 	    System.out.print("Sartu taula baten izena (adibidez: LANGILE): ");
 	    String taulaIzena = sc.nextLine().trim().toLowerCase();
 
-	    String archivoCSV = "Fitxategiak/" + taulaIzena + ".csv"; // Ruta del archivo CSV
+	    String archivoCSV = "Fitxategiak/" + taulaIzena + ".csv"; // CSV artxiboaren ibilbidea
 
 	    try (BufferedReader br = new BufferedReader(new FileReader(archivoCSV))) {
 	        String linea;
-	        boolean primeraLinea = true;
+	        boolean lehenengoIllara = true;
 	        String[] encabezado = null;
 
-	        // Leer y mostrar las líneas
+	        // Lerroak irakurri eta erakutsi
 	        while ((linea = br.readLine()) != null) {
 	            String[] columnas = linea.split(",");
-	            if (primeraLinea) {
-	                encabezado = columnas;  // Guardamos el encabezado para saber el número de columnas
-	                primeraLinea = false;
+	            if (lehenengoIllara) {
+	                encabezado = columnas;  // Goiburukoa gordeko dugu zutabe kopurua jakiteko
+	                lehenengoIllara = false;
 
-	                // Crear el formato dinámicamente según el número de columnas
+	                // Sortu formatua dinamikoki zutabe kopuruaren arabera
 	                StringBuilder formato = new StringBuilder();
 	                for (int i = 0; i < encabezado.length; i++) {
-	                    formato.append("%-20s");  // Asumimos que cada columna tendrá un tamaño fijo de 20 caracteres
+	                    formato.append("%-20s");  // Gure ustez, zutabe bakoitzak 20 karaktereko tamaina finkoa izango du.
 	                }
-	                // Imprimir encabezado
+	                // Inprimatu goiburukoa
 	                System.out.printf(formato.toString() + "\n", (Object[]) encabezado);
 	            } else {
-	                // Imprimir los datos según el formato detectado
+	                // Datuak inprimatu antzemandako formatuaren arabera
 	                System.out.printf(generateFormat(encabezado.length) + "\n", (Object[]) columnas);
 	            }
 	        }
@@ -155,11 +155,11 @@ public class Main {
 	    }
 	}
 
-	// Método auxiliar para generar el formato dinámico dependiendo del número de columnas
+	// Formatu dinamikoa sortzeko metodo osagarria, zutabe kopuruaren arabera
 	private static String generateFormat(int numColumnas) {
 	    StringBuilder formato = new StringBuilder();
 	    for (int i = 0; i < numColumnas; i++) {
-	        formato.append("%-20s");  // Se ajusta al tamaño de la columna que tiene un tamaño fijo de 20
+	        formato.append("%-20s");  
 	    }
 	    return formato.toString();
 	}

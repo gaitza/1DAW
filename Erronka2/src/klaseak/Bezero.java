@@ -1,68 +1,65 @@
 package klaseak;
 
 public class Bezero {
-	private int id;
-	private String izena;
-	private String abizena;
-	private String helbidea;
-	private String emaila;
+    private int id;
+    private String izena;
+    private String abizena;
+    private String helbidea;
+    private String emaila;
 
-	// Konstruktorea
-	public Bezero(int id, String izena, String abizena, String helbidea, String emaila) {
-		super();
-		this.id = id;
-		this.izena = izena;
-		this.abizena = abizena;
-		this.helbidea = helbidea;
-		this.emaila = emaila;
-	}
+    // Constructor
+    public Bezero(int id, String izena, String abizena, String helbidea, String emaila) {
+        this.id = id;
+        this.izena = izena;
+        this.abizena = abizena;
+        this.helbidea = helbidea;
+        this.emaila = emaila;
+    }
 
-	// Getters & Setters
+    // Getters & Setters
+    public int getId() {
+        return id;
+    }
 
-	public int getId() {
-		return id;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public String getIzena() {
+        return izena;
+    }
 
-	public String getIzena() {
-		return izena;
-	}
+    public void setIzena(String izena) {
+        this.izena = izena;
+    }
 
-	public void setIzena(String izena) {
-		this.izena = izena;
-	}
+    public String getAbizena() {
+        return abizena;
+    }
 
-	public String getAbizena() {
-		return abizena;
-	}
+    public void setAbizena(String abizena) {
+        this.abizena = abizena;
+    }
 
-	public void setAbizena(String abizena) {
-		this.abizena = abizena;
-	}
+    public String getHelbidea() {
+        return helbidea;
+    }
 
-	public String getHelbidea() {
-		return helbidea;
-	}
+    public void setHelbidea(String helbidea) {
+        this.helbidea = helbidea;
+    }
 
-	public void setHelbidea(String helbidea) {
-		this.helbidea = helbidea;
-	}
+    public String getEmaila() {
+        return emaila;
+    }
 
-	public String getEmaila() {
-		return emaila;
-	}
+    public void setEmaila(String emaila) {
+        this.emaila = emaila;
+    }
 
-	public void setEmaila(String emaila) {
-		this.emaila = emaila;
-	}
-
-	@Override
-	public String toString() {
-		return "Bezero [id=" + id + ", izena=" + izena + ", abizena=" + abizena + ", helbidea=" + helbidea + ", emaila="
-				+ emaila + "]";
-	}
-
+    // Método toString para representar la información del Bezero
+    @Override
+    public String toString() {
+        return "Bezero [id=" + id + ", izena=" + izena + ", abizena=" + abizena + ", helbidea=" + helbidea + ", emaila=" + emaila + "]";
+    }
 }
